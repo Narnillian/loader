@@ -1,5 +1,5 @@
 #include <iostream>
-#include <time.h>
+#include <ctime>
 using namespace std;
 
 int moveback;
@@ -14,7 +14,7 @@ int printwait(struct timespec ts) {
 }
 
 
-void v1(struct timespec ts, int limit = 0) {
+void simpleloader(struct timespec ts, int limit = 0) {
   int iterations = 0;
   bool checker = true;
   if (limit) {
@@ -36,15 +36,36 @@ void v1(struct timespec ts, int limit = 0) {
       printwait(ts);
     }
     cout << "\033[1D";
-    printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);
-    //cout << iterations << "\033[2D";
-    printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);printwait(ts);
     ts.tv_nsec=70000000;
     printwait(ts);
   }
 
 }
 
+
+void iterativeloader(struct timespec ts, int limit = 0) {
+  int iterations = 0;
+  bool checker = true;
+  if (limit) {
+    checker = false;
+  }
+  while (checker || iterations < limit) {
+    char fillers[] = {"/|\\-"};
+    iterations++;
+    ts.tv_nsec=20000000;
+    characters = 15;
+    for (int i = 0; i < 4; i++) {
+      for (writeChars=0; writeChars < characters; writeChars++) {
+        cout << fillers[i];
+        printwait(ts);
+      }
+      cout << "\033[15D";
+      nanosleep(&ts,NULL);
+    }
+  }
+}
+
+/*
 int main() {
   
   struct timespec ts;
@@ -53,10 +74,16 @@ int main() {
 
   cout << "Loading...   ";
 
-  v1(ts,10);
+
+  simpleloader(ts,5);
+  cout << "\n";
+  cout << "Loading...   ";
+
+  iterativeloader(ts,10); //
 
   cout << "\n";
   
 
   return 0;
 }
+*/
