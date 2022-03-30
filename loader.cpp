@@ -1,5 +1,5 @@
 #include <iostream>
-#include <ctime>
+#include <chrono>
 using namespace std;
 
 int moveback;
@@ -7,10 +7,9 @@ int characters;
 int writeChars;
 
 
-int printwait(struct timespec ts) {
+void printwait(struct timespec ts) {
   fflush(stdout);
   nanosleep(&ts,NULL);
-  return 0;
 }
 
 
@@ -65,7 +64,7 @@ void iterativeloader(struct timespec ts, int limit = 0) {
   }
 }
 
-/*
+/**/
 int main() {
   
   struct timespec ts;
@@ -86,4 +85,4 @@ int main() {
 
   return 0;
 }
-*/
+/**/
