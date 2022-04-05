@@ -67,18 +67,18 @@ void iterativeloader(struct timespec ts, int limit = 0) {
 /**/
 int main() {
   
+  
   struct timespec ts;
   ts.tv_sec=0;
 
 
   cout << "Loading...   ";
-
-
   simpleloader(ts,5);
-  cout << "\n";
-  cout << "Loading...   ";
 
-  iterativeloader(ts,10); //
+  cout << "\n";
+
+  cout << "Loading...   ";
+  iterativeloader(ts,10);
 
   cout << "\n";
   
