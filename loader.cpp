@@ -1,3 +1,5 @@
+//not intended to be run alone, but rather #included
+//no main()
 #include <iostream>
 #include <chrono>
 using namespace std;
@@ -63,26 +65,3 @@ void iterativeloader(struct timespec ts, int limit = 0) {
     }
   }
 }
-
-/**/
-int main() {
-  
-  
-  struct timespec ts;
-  ts.tv_sec=0;
-
-
-  cout << "Loading...   ";
-  simpleloader(ts,5);
-
-  cout << "\n";
-
-  cout << "Loading...   ";
-  iterativeloader(ts,10);
-
-  cout << "\n";
-  
-
-  return 0;
-}
-/**/
